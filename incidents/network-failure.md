@@ -1,0 +1,3 @@
+# Network troubleshooting (controlled diagnosis)
+
+Use `ip a` for interface/link and addresses (Layers 1/2), `ip route` for Layer 3 routing, `ss -tulnp` for Layer 4 listeners, `ping -c 3 1.1.1.1` for IP reachability where ICMP is allowed, and `getent hosts example.com` for DNS. A training fault can be an intentionally incorrect test hostname (`getent hosts no-such-host.invalid`), which exercises DNS failure without changing machine networking. Do not disable interfaces or alter routes on a shared/production host. Restore service by correcting the actual DNS or route issue found, then repeat each check.

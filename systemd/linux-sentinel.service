@@ -1,0 +1,24 @@
+[Unit]
+Description=Linux Sentinel system health collection
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=oneshot
+User=linux-sentinel
+Group=linux-sentinel
+WorkingDirectory=/opt/linux-sentinel
+EnvironmentFile=-/etc/linux-sentinel.conf
+ExecStart=/opt/linux-sentinel/.venv/bin/python /opt/linux-sentinel/monitor.py
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/linux-sentinel/reports /opt/linux-sentinel/logs /opt/linux-sentinel/incidents/records
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+UMask=0027
+[Install]
+WantedBy=multi-user.target

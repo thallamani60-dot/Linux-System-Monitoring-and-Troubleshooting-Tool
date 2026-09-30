@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Linux Sentinel every five minutes
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+AccuracySec=30s
+Unit=linux-sentinel.service
+[Install]
+WantedBy=timers.target
